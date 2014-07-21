@@ -12,11 +12,11 @@ namespace _2
 
         static void Main(string[] args)
         {
-            Sentance s1 = new Sentance(50, "Hello world!");
-            Sentance s2 = new Sentance(35, "Hello, mister Visiter!");
+            Sentance s1 = new Sentance(50, "Я хочу четверку.");
+            Sentance s2 = new Sentance(35, "Hello, world!");
             Sentance s3 = new Sentance(111, "Привет, как твои дела?");
             Sentance s4 = new Sentance(66, "London is a capital of Great Britain.");
-            Sentance s5 = new Sentance(222, "На дворе трава, на траве дрова");
+            Sentance s5 = new Sentance(222, "На дворе трава, на траве дрова.");
             _sentances.Add(s1);
             _sentances.Add(s2);
             _sentances.Add(s3);
@@ -26,7 +26,7 @@ namespace _2
             Console.WriteLine("Список:");
             Print();
 
-            Console.WriteLine("\nВведите номер критерия! \n1. По максимальному кол-ву символов в предложении \n2. По кол-ву слов");
+            Console.WriteLine("\nВведите номер критерия! \n1. По максимальному кол-ву слов в предложении \n2. По кол-ву слов");
             string s = Console.ReadLine();
             int x = int.Parse(s);
             
@@ -34,7 +34,7 @@ namespace _2
             Console.WriteLine("\nСписок, после сортировки:");
             Print();
 
-            _sentances.Add(new Sentance(56, "Еще одно предложение."));
+            _sentances.Add(new Sentance(56, "Лень чё-то писать.")); 
             Console.WriteLine("\nВведите номер позиции, в которую нужно добавить новое предложение (от 0 до {0})", _sentances.Count - 1);
             s = Console.ReadLine();
             int index = int.Parse(s);
@@ -52,21 +52,21 @@ namespace _2
             Console.WriteLine("\nСписок, после удаления двух, ранее добавленных, предложений:");
             Print();
 
-            Console.WriteLine("\nВведите номер критерия! \n1. По максимальному кол-ву символов в предложении \n2. По кол-ву слов");
+            Console.WriteLine("\nВведите номер критерия! \n1. По максимальному кол-ву слов в предложении \n2. По кол-ву слов");
             s = Console.ReadLine();
             x = int.Parse(s);
             Console.WriteLine("\nВведите значение параметра поиска");
             s = Console.ReadLine();
             int e = int.Parse(s);
             if (x == 1)
-                index = _sentances.FindIndex(i => i.MaxChar == e);
+                index = _sentances.FindIndex(i => i.MaxWords == e);
             else if (x == 2)
                 index = _sentances.FindIndex(i => i.WordsCount == e);
             else
                 Console.WriteLine("\nТакого критерия/значения не существует");
 
             Console.WriteLine("\nНайденный элемент поиска:\n");
-            Console.WriteLine("Слов: {0} \nМакс. кол-во символов: {1} \nПредложение: {2}", _sentances[index].WordsCount, _sentances[index].MaxChar, _sentances[index].SentanceThis);
+            Console.WriteLine("Слов: {0} \nМакс. кол-во слов: {1} \nПредложение: {2}", _sentances[index].WordsCount, _sentances[index].MaxWords, _sentances[index].SentanceThis);
 
             _sentances.Clear();
             Console.WriteLine("\nСписок пуст!");
@@ -82,7 +82,7 @@ namespace _2
                 {
                     if (x == 1)
                     {
-                        if (_sentances[j].MaxChar > _sentances[j + 1].MaxChar)
+                        if (_sentances[j].MaxWords > _sentances[j + 1].MaxWords)
                         {
                             Sentance s = _sentances[j];
                             _sentances[j] = _sentances[j + 1];
@@ -107,7 +107,7 @@ namespace _2
             for (int i = 0; i < _sentances.Count; i++)
             {
                 Console.WriteLine("\nСлов: {0}", _sentances[i].WordsCount);
-                Console.WriteLine("Максимальное кол-во символов: {0}", _sentances[i].MaxChar);
+                Console.WriteLine("Максимальное кол-во слов: {0}", _sentances[i].MaxWords);
                 Console.WriteLine("Предложение: {0}", _sentances[i].SentanceThis);
             }
         }
